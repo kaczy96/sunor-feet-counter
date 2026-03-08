@@ -41,10 +41,15 @@ img{
   margin:20px 0;
 }
 
+.buttons{
+  display:flex;
+  gap:15px;
+}
+
 button{
   font-family:'Friz Quadrata', serif;
-  font-size:24px;
-  padding:16px 34px;
+  font-size:22px;
+  padding:14px 30px;
   border-radius:14px;
   border:none;
   background:#6b4cff;
@@ -61,6 +66,10 @@ button:hover{
 button:active{
   transform:scale(0.97);
 }
+
+.reset{
+  background:#ff4c4c;
+}
 </style>
 </head>
 <body>
@@ -71,7 +80,10 @@ button:active{
 
 <div id="counter">0</div>
 
-<button onclick="addFeet()">Feet mentioned</button>
+<div class="buttons">
+  <button onclick="addFeet()">Feet mentioned</button>
+  <button class="reset" onclick="resetCounter()">Reset</button>
+</div>
 
 <script>
 function getCookie(name){
@@ -99,6 +111,12 @@ window.addEventListener('DOMContentLoaded', () => {
 
 function addFeet(){
   count++;
+  document.getElementById('counter').textContent = count;
+  setCookie('feetCounter', count, 3650);
+}
+
+function resetCounter(){
+  count = 0;
   document.getElementById('counter').textContent = count;
   setCookie('feetCounter', count, 3650);
 }
