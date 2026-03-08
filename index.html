@@ -74,22 +74,35 @@ button:active{
 <button onclick="addFeet()">Feet mentioned</button>
 
 <script>
-function getCookie(name) {
-  const value = `; ${document.cookie}`;
-  const parts = value.split(`; ${name}=`);
-  if (parts.length === 2) return parts.pop().split(';').shift();
+function getCookie(name){
+  const cookies = document.cookie.split(';');
+  for (let c of cookies){
+    const [key,val] = c.trim().split('=');
+    if(key === name) return val;
+  }
+  return null;
 }
 
-function setCookie(name, value, days) {
-  const date = new Date();
-  date.setTime(date.getTime() + (days*24*60*60*1000));
-  const expires = "expires=" + date.toUTCString();
-  document.cookie = name + "=" + value + ";" + expires + ";path=/";
+function setCookie(name,value,days){
+  const d = new Date();
+  d.setTime(d.getTime() + (days*24*60*60*1000));
+  document.cookie = `${name}=${value}; expires=${d.toUTCString()}; path=/`;
 }
 
-let count = parseInt(getCookie('feetCounter')) || 0;
+let count = 0;
 
-docu
+window.addEventListener('DOMContentLoaded', () => {
+  const saved = parseInt(getCookie('feetCounter'));
+  if(!isNaN(saved)) count = saved;
+  document.getElementById('counter').textContent = count;
+});
+
+function addFeet(){
+  count++;
+  document.getElementById('counter').textContent = count;
+  setCookie('feetCounter', count, 3650);
+}
+</script>
 
 </body>
 </html>
