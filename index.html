@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8" />
+<title>Sunor Feet Counter</title>
+<style>
+@font-face {
+  font-family: 'Friz Quadrata';
+  src: local('Friz Quadrata'), local('FrizQuadrata');
+}
+
+body {
+  margin:0;
+  background:#0f0f10;
+  color:#e6e6e6;
+  font-family:'Friz Quadrata', serif;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  min-height:100vh;
+  text-align:center;
+}
+
+h1{
+  font-size:56px;
+  margin-bottom:20px;
+  letter-spacing:2px;
+}
+
+img{
+  width:420px;
+  max-width:80vw;
+  border-radius:18px;
+  margin:25px 0;
+  box-shadow:0 0 40px rgba(0,0,0,0.7);
+}
+
+#counter{
+  font-size:72px;
+  margin:20px 0;
+}
+
+button{
+  font-family:'Friz Quadrata', serif;
+  font-size:24px;
+  padding:16px 34px;
+  border-radius:14px;
+  border:none;
+  background:#6b4cff;
+  color:white;
+  cursor:pointer;
+  transition:transform .1s ease, box-shadow .1s ease;
+  box-shadow:0 6px 18px rgba(0,0,0,0.5);
+}
+
+button:hover{
+  transform:scale(1.05);
+}
+
+button:active{
+  transform:scale(0.97);
+}
+</style>
+</head>
+<body>
+
+<h1>Sunor Feet Counter</h1>
+
+<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAA" id="feetImage" />
+
+<div id="counter">0</div>
+
+<button onclick="addFeet()">Feet mentioned</button>
+
+<script>
+let count = 0;
+
+function addFeet(){
+  count++;
+  document.getElementById('counter').textContent = count;
+}
+</script>
+
+</body>
+</html>
